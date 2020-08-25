@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="bnkapi---%D0%BF%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B8%D0%B5-multicloud-cloudnative-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BD%D0%B0-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B5-openshift-%D1%80%D0%B0%D0%B7%D0%B2%D0%B5%D1%80%D1%82%D1%8B%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-%D0%B2-openshift">bnkapi - Построение multicloud  CloudNative приложений на платформе OpenShift. Развертывание проекта в OpenShift</h1>
+<!-- TOC BEGIN -->
+<ul>
+<li>
+<ol>
+<li><a href="#p1">Цель работы</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#p2">Выполнение лабораторной работы</a></li>
+</ol>
+</li>
+<li>2.1. <a href="#p2-1">Создать проект в openshift: настройка  переменных</a></li>
+<li>2.2. <a href="#p2-2">Создать проект в openshift: Запуск скрипта на выполнение</a></li>
+<li>2.3. <a href="#p2-3">Удалить проект в openshift: Запуск скрипта на выполнение</a></li>
+<li>2.4. <a href="#p2-4">Создать прикладные компоненты проект в openshift: назначение файлов</a></li>
+<li>2.5. <a href="#p2-5">Создать прикладные компоненты проект в openshift: настройка переменных</a></li>
+<li>2.6. <a href="#p2-6">Создать прикладные компоненты проект в openshift: Запуск deployemnt прикладных компонентов</a></li>
+<li>2.7. <a href="#p2-7">Создать прикладные компоненты проект в openshift: Создание схемы в БД postgres</a></li>
+</ul>
+<!-- TOC END -->
+<p><a name="p1"></a></p>
+<h2 id="%D1%86%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Цель работы</h2>
+<p>Целью данной работы является демонстрация  возможностей развертывания многокомпонентных приложений на платформе OpenShift.</p>
+<p>В лабораторной работе будут выполнены такие этапы:</p>
+<ul>
+<li>
+<p>создание проекта и его подготовка для deployment в него многокомпонентных приложений с помощью oc cli.</p>
+</li>
+<li>
+<p>deployment  реляционной базы данных postgres с  предустановленного каталога шаблонов, который присутствует в openshift с помощью oc cli, pic-1.
+<kbd><img src="doc/oc-pic-1.png" /></kbd></p>
+</li>
+</ul>
+<p style="text-align: center;">pic-1</p>
+<ul>
+<li>deployment  NoSql  базы данных CouchDB (известная в IBM Cloud как CloudantDB) с  Docker репозитория и назначения ей Persistence storage.
+<a href="https://hub.docker.com/r/ibmcom/couchdb3">ibmcom/couchdb3</a> pic-2.</li>
+</ul>
+<p><kbd><img src="doc/oc-pic-2.png" /></kbd></p>
+<p style="text-align: center;">pic-2</p>
+<ul>
+<li>
+<p>deployment Rest API разработанного на базе Node.js express из исходного кода, размещенного в GitHub.</p>
+</li>
+<li>
+<p>deployemnt клиентской части IBM Secure Gateway с Docker репозитория как контейнер <a href="https://hub.docker.com/r/ibmcom/secure-gateway-client">ibmcom/secure-gateway-client</a>.</p>
+</li>
+</ul>
+<p><kbd><img src="doc/oc-pic-3.png" /></kbd></p>
+<p style="text-align: center;">pic-3</p>
+<p>В результате выполнения работы будет построена топология компонентов приложения, показанная на pic-4</p>
+<p><kbd><img src="doc/oc-pic-4.png" /></kbd></p>
+<p style="text-align: center;">pic-4</p>
+<p><a name="p2"></a></p>
+<h2 id="%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%BE%D0%B9-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Выполнение лабораторной работы</h2>
+<p><a name="p2-1"></a></p>
+<h3 id="%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D1%85">Создать проект в openshift: настройка  переменных</h3>
+<p>В корне каталога ./openshift  находится набор .cmd файлов  для создания проекта. Основная цель этого пакета файлов - создать проекты в зависимости от среды и создать дополнительны  сущности, которые называются <strong>&quot;secrets&quot;</strong>,  для автоматического подключения к gitHub-репозиториям, хранения параметров подключения к базам данных. Ниже - перечень этих файлов с пояснениями</p>
+<ul>
+<li>prj_env.cmd
+Содержит настройку на проекты и  в openshift для разных сред.
+Предполагается что может быть 3  проекта, в зависимости от сред:
+Имя проекта для разных сред состоит из непосредственно имени и суффикса, обозначающего идентификатор среды.</li>
+</ul>
+<p>Для нашего случая название проекта: <strong>&quot;bnkdem&quot;</strong>,  а суффиксы  берться из таблицы. Таким образом, в зависимости от переданного параметра среды, будут создаваться названия проектов как в колонке 3.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">идентификатор среды</th>
+<th style="text-align:right">Наименование  среды</th>
+<th style="text-align:right">Названия проектов</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">dev</td>
+<td style="text-align:right">Среда разработки</td>
+<td style="text-align:right">bnkdem-dev</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:right">Среда тестирования</td>
+<td style="text-align:right">bnkdem-int</td>
+</tr>
+<tr>
+<td style="text-align:left">prod</td>
+<td style="text-align:right">Среда продуктивная</td>
+<td style="text-align:right">bnkdem-prod</td>
+</tr>
+</tbody>
+</table>
+<p>Фрагмент файла, где формируется имя проекта показан ниже:</p>
+<pre class="hljs"><code><div>
+<span class="hljs-built_in">set</span> BUILD_ENV=%1
+
+<span class="hljs-built_in">echo</span> SET Project parameters
+
+   <span class="hljs-built_in">set</span> PRJ-NAME=bnkdem
+   <span class="hljs-built_in">set</span> PRJ-DISP=bnkdem
+   <span class="hljs-built_in">set</span> PRJ-DESCR=bnkdem
+<span class="hljs-built_in">echo</span> SET ENV marker
+   <span class="hljs-built_in">set</span> PRJ-NAME=%PRJ-NAME%-%BUILD_ENV%
+   <span class="hljs-built_in">set</span> PRJ-DISP=%PRJ-DISP%-%BUILD_ENV%
+   <span class="hljs-built_in">set</span> PRJ-DESCR=%PRJ-DESCR%-%BUILD_ENV%
+</div></code></pre>
+<ul>
+<li>login.cmd</li>
+</ul>
+<p>Файл описывающий логин с openshift кластер.
+в даном случае используется команда:</p>
+<pre class="hljs"><code><div>        oc login
+</div></code></pre>
+<p>Можно залогинится по логину и паролю, а лучше по токену</p>
+<pre class="hljs"><code><div>oc login --your token --server=your-claster-api-url
+
+</div></code></pre>
+<p>На pic-5 показано, как получить  логин с токеном</p>
+<p><kbd><img src="doc/oc-pic-5.png" /></kbd></p>
+<p style="text-align: center;">pic-5</p>
+<ul>
+<li>
+<p>crt_prj_opshift.cmd
+Выполняет пакетное создание проекта и всех секретов. Приложения создаются в отдельном пакете файлов, в зависимости от среды.</p>
+</li>
+<li>
+<p>del_prj_opshift.cmd<br>
+Выполняет пакетное удаление проекта и всех его приложений</p>
+</li>
+<li>
+<p>grn_prj_opshift.cmd
+Дать права на проект другим разработчикам</p>
+</li>
+<li>
+<p>rev_prj_opshift.cmd
+забрать права на проект</p>
+</li>
+<li>
+<p>crt_prj_secret.cmd
+Создать секреты внутри проекта. Ниже в квадратных скобках указано [какие реквизиты для подключения к gitHub] нужно внести:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>        <span class="hljs-built_in">echo</span> ****************************************
+        <span class="hljs-built_in">echo</span> *    create secret to gitLab
+        <span class="hljs-built_in">echo</span> *
+        <span class="hljs-built_in">echo</span> ****************************************
+
+        oc create secret generic sinc-gitlab-pvx-1 --from-literal=username=[your gitlab login] --from-literal=password=[your gitlab password]
+
+        oc secrets link deployer sinc-gitlab-pvx-1  
+        oc secrets link builder sinc-gitlab-pvx-1
+
+        oc annotate secret sinc-gitlab-pvx-1 <span class="hljs-string">"build.openshift.io/source-secret-match-uri-1=[your gitlab login uri https://github.com/[you login] ]
+</span></div></code></pre>
+<p>В данном случае  создание секрета к github выполняется полностью набором команд oc.
+Дальше необходимо создать секреты для подключения к базам данных. Поэтому используется другой, универсальный механизм создания объектов в openshift  с использованием конфигурационного *.yaml файла.</p>
+<pre class="hljs"><code><div>
+        <span class="hljs-built_in">echo</span> ****************************************
+        <span class="hljs-built_in">echo</span> *    create secret to couchDB
+        <span class="hljs-built_in">echo</span> *
+        <span class="hljs-built_in">echo</span> ****************************************
+        oc create -f couchdb-secret.yaml
+
+        <span class="hljs-built_in">echo</span> ****************************************
+        <span class="hljs-built_in">echo</span> *    create secret to postgresDB
+        <span class="hljs-built_in">echo</span> *
+        <span class="hljs-built_in">echo</span> ****************************************
+        oc create -f postgresdb-secret.yaml
+
+</div></code></pre>
+<ul>
+<li>couchdb-secret.yaml<br>
+Создание  секрета для  couchDB.
+Необходимо внести логин и пароль пользователя для подключения к couchDB</li>
+</ul>
+<pre class="hljs"><code><div>  <span class="hljs-attr">stringData:</span>
+    <span class="hljs-attr">database-password:</span> <span class="hljs-string">[password]</span>
+    <span class="hljs-attr">database-user:</span> <span class="hljs-string">[login]</span>
+</div></code></pre>
+<ul>
+<li>postgresdb-secret.yaml
+Создание  секрета для  postgres DB.</li>
+</ul>
+<pre class="hljs"><code><div>
+  <span class="hljs-attr">stringData:</span>
+    <span class="hljs-attr">database-name:</span> <span class="hljs-string">[database</span> <span class="hljs-string">name]</span>
+    <span class="hljs-attr">database-password:</span> <span class="hljs-string">[password]</span>
+    <span class="hljs-attr">database-user:</span> <span class="hljs-string">[login]</span>
+</div></code></pre>
+<p><a name="p2-2"></a></p>
+<h3 id="%D1%81%D0%BE%D0%B7%D0%B0%D0%B4%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0-%D0%BD%D0%B0-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5">Созадть проект в openshift: Запуск скрипта на выполнение</h3>
+<p>Для создания проетка на среде int нужно запустить  указанный ниже командный файл</p>
+<pre class="hljs"><code><div>        crt_prj_opshift.cmd int
+
+</div></code></pre>
+<p>В результате создания сгенерируется такой лог:</p>
+<pre class="hljs"><code><div>C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift&gt;crt_prj_opshift.cmd int
+Active code page: 65001
+**************************************************************
+*            CREATE PROJECT ON OPENSHIFT
+**************************************************************
+set project and login
+============================================================================
+SET  Evironment variables for project
+============================================================================
+SET Project parameters
+SET ENV marker
+PRJ-NAME=bnkdem-int
+PRJ-DISP=bnkdem-int
+PRJ-DESCR=bnkdem-int
+**************************************************************
+*            Login script on OPENSHIFT
+**************************************************************
+* oc login --server --token=
+* oc login --server -u  -p
+**************************************************************
+*************************************************************
+* Openshift CLI URL=
+*************************************************************
+Logged into &quot;https://api.crc.testing:6443&quot; as &quot;developer&quot; using the token provided.
+
+You have access to the following projects and can switch between them with 'oc project &lt;projectname&gt;':
+
+  * bnk-dev
+    bnkdem-dev
+    bnkdem-prod
+
+Using project &quot;bnk-dev&quot;.
+create project
+Now using project &quot;bnkdem-int&quot; on server &quot;https://api.crc.testing:6443&quot;.
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app ruby~https://github.com/sclorg/ruby-ex.git
+
+to build a new example application in Python. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+
+NAME          DISPLAY NAME   STATUS
+bnk-dev                      Active
+bnkdem-dev    bnkdem-dev     Active
+bnkdem-prod   bnkdem-prod    Active
+Already on project &quot;bnkdem-int&quot; on server &quot;https://api.crc.testing:6443&quot;.
+************************************
+*  create secrets
+************************************
+****************************************
+*    create secret to  git
+*
+****************************************
+secret/sinc-gitlab-pvx-1 created
+secret/sinc-gitlab-pvx-1 annotated
+secret/sinc-github created
+secret/sinc-github annotated
+****************************************
+*    create secret to couchDB
+*
+****************************************
+secret/couchdb created
+****************************************
+*    create secret to postgresDB
+*
+****************************************
+secret/postgresql created
+************************************
+*  grant access to developers
+************************************
+****************************************
+* Прдоставить другому разработчику права администратора проекта
+*
+****************************************
+C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift&gt;
+
+</div></code></pre>
+<p><a name="p2-3"></a></p>
+<h3 id="%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0-%D0%BD%D0%B0-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5">Удалить проект в openshift: Запуск скрипта на выполнение</h3>
+<p>Для удаления проетка на среде int нужно запустить  указанный ниже команндный файл</p>
+<pre class="hljs"><code><div>        crt_prj_opshift.cmd int
+
+</div></code></pre>
+<p>Ниже показан лог раобты комнады удаления</p>
+<pre class="hljs"><code><div>C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift&gt;del_prj_opshift.cmd int
+Active code page: 65001
+**************************************************************
+*            DELETE PROJECT ON OPENSHIFT
+**************************************************************
+set project and login
+============================================================================
+SET  Evironment variables for project
+============================================================================
+SET Project parameters
+SET ENV marker
+PRJ-NAME=bnkdem-int
+PRJ-DISP=bnkdem-int
+PRJ-DESCR=bnkdem-int
+**************************************************************
+*            Login script on OPENSHIFT
+**************************************************************
+* oc login --server --token=
+* oc login --server -u  -p
+**************************************************************
+*************************************************************
+* Openshift CLI URL=
+*************************************************************
+Logged into &quot;https://api.crc.testing:6443&quot; as &quot;developer&quot; using the token provided.
+
+You have access to the following projects and can switch between them with 'oc project &lt;projectname&gt;':
+
+    bnk-dev
+    bnkdem-dev
+  * bnkdem-int
+    bnkdem-prod
+
+Using project &quot;bnkdem-int&quot;.
+project.project.openshift.io &quot;bnkdem-int&quot; deleted
+NAME          DISPLAY NAME   STATUS
+bnk-dev                      Active
+bnkdem-dev    bnkdem-dev     Active
+bnkdem-int    bnkdem-int     Terminating
+bnkdem-prod   bnkdem-prod    Active
+
+C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift&gt;
+
+</div></code></pre>
+<p>Зайдя в web-console openshift можем проверить результаты создания проекта (pic-6)</p>
+<p><kbd><img src="doc/oc-pic-6.png" /></kbd></p>
+<p style="text-align: center;">pic-6</p>
+<p><a name="p2-4"></a></p>
+<h3 id="%D1%81%D0%BE%D0%B7%D0%B0%D0%B4%D1%82%D1%8C-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%BD%D0%B0%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2">Созадть прикладные компоненты проект в openshift: назначение файлов</h3>
+<p>В зависимости от среды в подкаталогах:</p>
+<pre class="hljs"><code><div>    ./dev
+    ./int
+    .prod
+</div></code></pre>
+<p>находится набор пакетных файлов и настроек переменных среды для создания прикладных компонентов проекта, индивидуальных для каждой среды. В каждом каталоге находится одинаковый набор файлов. Разница может быть в настройках переменных среды.</p>
+<ul>
+<li>
+<p>crt_app.cmd
+Общий скрипт для последовательного пакетного создания всех прикладных компонентов</p>
+</li>
+<li>
+<p>1-crt_app.cmd
+Создать один компонент, который передается в виде параметра.</p>
+</li>
+<li>
+<p>crt_app_couchdb.cmd, crt_app_couchdb.yaml
+Командный файл создания couchDB  из docker-контейнерного. Файл crt_app_couchdb.yaml - содержит описание компонентов, которые будут созданы в процессе выполнения.  На pic-7 показаны блоки yaml-файла с пояснениями выполняемых функций</p>
+</li>
+</ul>
+<p><kbd><img src="doc/oc-pic-7.png" /></kbd></p>
+<p style="text-align: center;">pic-7</p>
+<p>А на pic-8 показаны фрагменты, показывающие подключение стореджа и переменных среды.</p>
+<p><kbd><img src="doc/oc-pic-8.png" /></kbd></p>
+<p style="text-align: center;">pic-8</p>
+<ul>
+<li>
+<p>crt_app_pgdb.cmd crt_app_pgdb.yaml
+Командный файл дя создания postgres DB. Фай crt_app_pgdb.yaml  содержит описание компонентов, которые будут созданы в процессе выполнения.</p>
+</li>
+<li>
+<p>crt_app_bnkdemo-api.cmd, bnkdemo-api.env
+Командный файл, для создания Node.JS  приложения реализующее REST API для работы с базами данных. Файл bnkdemo-api.env содержит перечень переменных среды, которые будут установлены в процессе развертывания.</p>
+</li>
+</ul>
+<p>Тут приложение создается командой <strong>oc new-app</strong></p>
+<pre class="hljs"><code><div>oc new-app https://github.com/pavlo-shcherbukha/bnkapidemo.git#master --context-dir=/src/bnkdemo-be  --name=&quot;bnkdemo-api&quot; --env-file ./bnkdemo-api.env --strategy=source --source-secret=sinc-github --image-stream=openshift/nodejs:10-SCL -l app=bnkdemo-api
+
+</div></code></pre>
+<p>При этом параметризуется:
+URL github репозитория, с которого будут доставаться исходники Node.js, через знак <strong>&quot;#&quot;</strong> указывается имя git branch</p>
+<p>Относительная папка, с котроый взять исходники, указывается в ключе --context-dir</p>
+<pre class="hljs"><code><div>    --context-dir=/src/
+</div></code></pre>
+<p>Ключ <strong>--env-file</strong> ссылкается на файл с переменными среды, которые будут созданы в процессе deployment</p>
+<pre class="hljs"><code><div>   --env-file ./bnkdemo-api.env
+</div></code></pre>
+<p>Ключ <strong>--strategy=source</strong> уточняет, что развертывание приложения будет выполнено из репозитория исходного кода, а не из docker образа</p>
+<p>Ключ --source-secret=sinc-github  указывает на секрет с параметрами подключения к github  для клонирования репозитория.</p>
+<p>Ключ --image-stream=openshift/nodejs:10-SCL указывает на базовый образ, в который будут копироваться исходники и потом собираться итоговый образ приложения.</p>
+<p>По линку <a href="https://catalog.redhat.com/software/containers/search">Container images offer lightweight and self-contained software to enable deployment at scale.</a> можно найти документацию  и описание использования контейнеров. В даном случае, так как используется однопользовательская версия используется образ: https://github.com/nodeshift/centos7-s2i-nodejs</p>
+<p>После создания самого компонента  следует следующая команда, по созданию http - роутера, чтобы копонент стал доступным снаружи проекта.</p>
+<pre class="hljs"><code><div>echo ****************************************
+echo *    create bnkdemo-api Router
+echo *
+echo ****************************************
+oc expose svc/bnkdemo-api --hostname=&quot;bnkapi-bnkdem-dev.apps-crc.testing&quot; --name=&quot;bnkapi-bnkdem-dev.apps-crc.testing&quot; --port 8080 -l app=bnkdemo-api
+</div></code></pre>
+<p>В данном случае, хочется обратить внимание, что --hostname состоит из вполне определенных реквизитов:
+&quot;bnkapi-bnkdem-dev.apps-crc.testing&quot;</p>
+<ul>
+<li>.apps-crc.testing DNS кластера</li>
+<li>bnkdem-dev наименование проекта</li>
+<li>bnkapi наименование компонента в проекте.</li>
+</ul>
+<p>следуя этим правилам, можно обеспечить не повторяемость роутеров.</p>
+<ul>
+<li>crt_app_securegw.cmd securegw.env</li>
+</ul>
+<p>Создание клиентской части (не облачной) IBM Secure GateWay.</p>
+<p>a name=&quot;p2-5&quot;&gt;</a></p>
+<h3 id="%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D1%85">Создать прикладные компоненты проект в openshift: настройка переменных</h3>
+<p>Необходимо указать URL DNS openshift кластера в файлах:</p>
+<ul>
+<li>
+<p>crt_app_bnkdemo-api.cmd</p>
+</li>
+<li>
+<p>crt_app_securegw.cmd</p>
+</li>
+<li>
+<p>crt_app_couchdb.yaml  в разделе Route</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: couchdb
+    name: db-bnkdem-dev.apps-crc.testing
+  spec:
+    host: db-db-bnkdem-dev.apps-crc.testing
+</div></code></pre>
+<p>Указать параметры подклчения к базам данных в файле: bnkdemo-api.env.</p>
+<p><a name="p2-6"></a></p>
+<h3 id="%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-deployemnt-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D1%85-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2">Создать прикладные компоненты проект в openshift: Запуск deployemnt прикладных компонентов</h3>
+<p>Для запуска deployment  нужно запустить набор пакетных файлов с указанием среды deployment</p>
+<pre class="hljs"><code><div>  <span class="hljs-built_in">cd</span> int
+  crt_app.cmd int
+
+
+</div></code></pre>
+<p>Лог создания приложений показан ниже</p>
+<pre class="hljs"><code><div>
+C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift&gt;cd int
+
+C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift\int&gt;crt_app.cmd int
+**************************************************************
+*            CREATE APP IN OPENSHIFT
+**************************************************************
+set project and login
+============================================================================
+SET  Evironment variables for project
+============================================================================
+SET Project parameters
+SET ENV marker
+PRJ-NAME=bnkdem-int
+PRJ-DISP=bnkdem-int
+PRJ-DESCR=bnkdem-int
+**************************************************************
+*            Login script on OPENSHIFT
+**************************************************************
+* oc login --server --token=
+* oc login --server -u  -p
+**************************************************************
+*************************************************************
+* Openshift CLI URL=
+*************************************************************
+Logged into &quot;https://api.crc.testing:6443&quot; as &quot;developer&quot; using the token provided.
+
+You have access to the following projects and can switch between them with 'oc project &lt;projectname&gt;':
+
+    bnk-dev
+    bnkdem-dev
+  * bnkdem-int
+    bnkdem-prod
+
+Using project &quot;bnkdem-int&quot;.
+Already on project &quot;bnkdem-int&quot; on server &quot;https://api.crc.testing:6443&quot;.
+****************************************
+*    create CouchDB
+*
+*    ./couchdb.env  - contains database admin and password
+*    docker pull ibmcom/couchdb3
+*    https://hub.docker.com/r/ibmcom/couchdb3
+*    иммитация --output=yaml --dry-run
+****************************************
+No resources found
+persistentvolumeclaim/couchdb1v created
+imagestream.image.openshift.io/couchdb created
+deploymentconfig.apps.openshift.io/couchdb created
+service/couchdb created
+route.route.openshift.io/db-bnkdem-dev.apps-crc.testing created
+****************************************
+*    create Postgres DB from template
+*
+****************************************
+No resources found
+service/postgresql created
+persistentvolumeclaim/postgresql created
+deploymentconfig.apps.openshift.io/postgresql created
+****************************************
+*    Router не нуже БД работает по своему протоколу
+*    Нужно сделать port forward для работы с psql
+*    oc port-forward postgresql-1-97dtc 15432:5432
+*
+****************************************
+****************************************
+*    create bnkdemo-api
+*
+****************************************
+No resources found
+warning: Cannot check if git requires authentication.
+--&gt; Found image 4b4fcd7 (5 months old) in image stream &quot;openshift/nodejs&quot; under tag &quot;10-SCL&quot; for &quot;openshift/nodejs:10-SCL&quot;
+
+    Node.js 10
+    ----------
+    Node.js 10 available as container is a base platform for building and running various Node.js 10 applications and frameworks. Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+
+    Tags: builder, nodejs, nodejs10
+
+    * The source repository appears to match: nodejs
+    * A source build using source code from https://github.com/pavlo-shcherbukha/bnkapidemo.git#master will be created
+      * The resulting image will be pushed to image stream tag &quot;bnkdemo-api:latest&quot;
+      * Use 'oc start-build' to trigger a new build
+      * WARNING: this source repository may require credentials.
+                 Create a secret with your git credentials and use 'oc set build-secret' to assign it to the build config.
+    * This image will be deployed in deployment config &quot;bnkdemo-api&quot;
+    * Port 8080/tcp will be load balanced by service &quot;bnkdemo-api&quot;
+      * Other containers can access this service through the hostname &quot;bnkdemo-api&quot;
+
+--&gt; Creating resources with label app=bnkdemo-api ...
+    imagestream.image.openshift.io &quot;bnkdemo-api&quot; created
+    buildconfig.build.openshift.io &quot;bnkdemo-api&quot; created
+    deploymentconfig.apps.openshift.io &quot;bnkdemo-api&quot; created
+    service &quot;bnkdemo-api&quot; created
+--&gt; Success
+    Build scheduled, use 'oc logs -f bc/bnkdemo-api' to track its progress.
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/bnkdemo-api'
+    Run 'oc status' to view your app.
+****************************************
+*    create bnkdemo-api Router
+*
+****************************************
+route.route.openshift.io/bnkapi-bnkdem-dev.apps-crc.testing exposed
+Press any key to continue . . .
+
+C:\PSHDEV\PSH-WorkShops\THINK2020\repo\wa\think2020-bnkapi\openshift\int&gt;
+</div></code></pre>
+<p><a name="p2-7"></a></p>
+<h2 id="%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%D0%B2-openshift-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B2-%D0%B1%D0%B4-postgres">Создать прикладные компоненты проект в openshift: Создание схемы в БД postgres</h2>
+<p>Инструкция по запуску на выполнение DDL-скриптов находится в файле <a href="../src/ddl-bnk/readme.md">src/ddl-bnk/readme.md</a></p>
+
+</body>
+</html>

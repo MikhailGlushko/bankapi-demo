@@ -1,0 +1,166 @@
+﻿apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: couchdb1
+      app.kubernetes.io/component: couchdb1
+      app.kubernetes.io/instance: couchdb1
+    name: couchdb1v
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  status: {}
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: couchdb
+    name: couchdb
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: ibmcom/couchdb3
+      from:
+        kind: DockerImage
+        name: ibmcom/couchdb3
+      generation: null
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: ""
+  status:
+    dockerImageRepository: ""
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: couchdb
+    name: couchdb
+  spec:
+    replicas: 1
+    selector:
+      app: couchdb
+      deploymentconfig: couchdb
+    strategy:
+      resources: {}
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: couchdb
+          deploymentconfig: couchdb
+      spec:
+        containers:
+        - env:
+          - name: COUCHDB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: couchdb
+          - name: COUCHDB_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: couchdb
+          - name: method
+            value: new-app
+          image: ibmcom/couchdb3
+          name: couchdb
+          ports:
+          - containerPort: 5984
+            protocol: TCP
+          - containerPort: 9100
+            protocol: TCP
+          - containerPort: 4369
+            protocol: TCP
+          resources: {}
+          volumeMounts:
+          - mountPath: /opt/couchdb/data
+            name: couchdb1v
+        volumes:
+        - name: couchdb1v
+          persistentVolumeClaim:
+            claimName: couchdb1v
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - couchdb
+        from:
+          kind: ImageStreamTag
+          name: couchdb:latest
+      type: ImageChange
+  status:
+    availableReplicas: 0
+    latestVersion: 0
+    observedGeneration: 0
+    replicas: 0
+    unavailableReplicas: 0
+    updatedReplicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: couchdb
+    name: couchdb
+  spec:
+    ports:
+    - name: 4369-tcp
+      port: 4369
+      protocol: TCP
+      targetPort: 4369
+    - name: 5984-tcp
+      port: 5984
+      protocol: TCP
+      targetPort: 5984
+    - name: 9100-tcp
+      port: 9100
+      protocol: TCP
+      targetPort: 9100
+    selector:
+      app: couchdb
+      deploymentconfig: couchdb
+  status:
+    loadBalancer: {}
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: couchdb
+    name: db-bnkdem-dev.apps-crc.testing
+  spec:
+    host: db-db-bnkdem-dev.apps-crc.testing
+    port:
+      targetPort: 5984
+    to:
+      kind: ""
+      name: couchdb
+      weight: null
+  status:
+    ingress: null
+kind: List
+metadata: {}

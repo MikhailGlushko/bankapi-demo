@@ -1,0 +1,6 @@
+localdev
+*.log
+old
+crt_prj_secret.cmd 
+couchdb-secret.yaml 
+postgresdb-secret.yaml 

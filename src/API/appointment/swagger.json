@@ -1,0 +1,204 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "appointment",
+    "version" : "1.0.0",
+    "description" : "appointment"
+  },
+  "paths" : {
+    "/appointment" : {
+      "get" : {
+        "operationId" : "getAppointment",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/getAppointmentsResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve appointment",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postAppointment",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createAppointmentResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a appointment",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/createAppointmentReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "operationId" : "deleteAppointment",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/deleteAppointmentResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from appointment",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "options" : {
+        "operationId" : "optionsAppointment",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve options"
+      }
+    },
+    "/appointment/{:id}" : {
+      "get" : {
+        "operationId" : "get:id",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/getAppointmentResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve :id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : ":id",
+          "in" : "path",
+          "type" : "integer"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/bnkapi",
+  "definitions" : {
+    "createAppointmentReqType" : {
+      "type" : "object",
+      "properties" : {
+        "mtype" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "integer"
+        },
+        "cust_idreason" : {
+          "type" : "string"
+        },
+        "cust_message" : {
+          "type" : "string"
+        },
+        "cust_email" : {
+          "type" : "string"
+        },
+        "cust_phone" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createAppointmentResType" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "getAppointmentResType" : {
+      "type" : "object",
+      "properties" : {
+        "mtype" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "integer"
+        },
+        "cust_idreason" : {
+          "type" : "string"
+        },
+        "cust_message" : {
+          "type" : "string"
+        },
+        "cust_email" : {
+          "type" : "string"
+        },
+        "cust_phone" : {
+          "type" : "string"
+        },
+        "_id" : {
+          "type" : "string"
+        },
+        "_rev" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "app_date" : {
+          "type" : "string"
+        },
+        "app_time" : {
+          "type" : "string"
+        },
+        "app_status" : {
+          "type" : "string"
+        },
+        "bnk_empid" : {
+          "type" : "string"
+        },
+        "bnk_empmsg" : {
+          "type" : "string"
+        }
+      }
+    },
+    "getAppointmentsResType" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/getAppointmentResType"
+      }
+    },
+    "deleteAppointmentResType" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "rev" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "customer",
+    "version" : "1.0.0",
+    "description" : "customer"
+  },
+  "paths" : {
+    "/customer" : {
+      "get" : {
+        "operationId" : "getCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/getCustomerListResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve customer",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createCustomerResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a customer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/getCustomerListResType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "operationId" : "deleteCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/deleteCustomerResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from customer",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      },
+      "options" : {
+        "operationId" : "optionsCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createCustomerResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve options"
+      },
+      "put" : {
+        "operationId" : "putCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/updateCustomerResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update customer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/updateCustomerReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/bnkapi",
+  "definitions" : {
+    "createCustomerReqType" : {
+      "type" : "object",
+      "properties" : {
+        "first_nm" : {
+          "type" : "string"
+        },
+        "last_nm" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "tin" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createCustomerResType" : {
+      "type" : "object",
+      "properties" : {
+        "idcust" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "getCustomerResType" : {
+      "type" : "object",
+      "properties" : {
+        "idcust" : {
+          "type" : "number"
+        },
+        "first_nm" : {
+          "type" : "string"
+        },
+        "last_nm" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "tin" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "dtopen" : {
+          "type" : "string"
+        },
+        "dtclose" : {
+          "type" : "string"
+        },
+        "idt" : {
+          "type" : "string"
+        },
+        "itm" : {
+          "type" : "string"
+        },
+        "mdt" : {
+          "type" : "string"
+        },
+        "mtm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "deleteCustomerResType" : {
+      "type" : "object",
+      "properties" : {
+        "deleted" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "getCustomerListResType" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/getCustomerResType"
+      }
+    },
+    "updateCustomerReqType" : {
+      "type" : "object",
+      "properties" : {
+        "first_nm" : {
+          "type" : "string"
+        },
+        "last_nm" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "tin" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "updateCustomerResType" : {
+      "type" : "object",
+      "properties" : {
+        "updated" : {
+          "type" : "number"
+        }
+      }
+    }
+  }
+}

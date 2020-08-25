@@ -1,0 +1,69 @@
+{
+  "version": 1,
+ "DB_HOST": {
+    "searchPatterns": [
+      "env:DB_HOST",
+      "file:/server/localdev-config.json:$.DB_HOST"
+    ]
+ },
+ "DB_PORT": {
+    "searchPatterns": [
+      "env:DB_PORT",
+      "file:/server/localdev-config.json:$.DB_PORT"
+    ]
+ },
+ "DB_NAME": {
+    "searchPatterns": [
+      "env:DB_NAME",
+      "file:/server/localdev-config.json:$.DB_NAME"
+    ]
+ },
+ "DB_USER": {
+    "searchPatterns": [
+      "env:DB_USER",
+      "file:/server/localdev-config.json:$.DB_USER"
+    ]
+ },
+ "DB_PSW": {
+    "searchPatterns": [
+      "env:DB_PSW",
+      "file:/server/localdev-config.json:$.DB_PSW"
+    ]
+ },
+ "DBC_HOST": {
+    "searchPatterns": [
+      "env:DBC_HOST",
+      "file:/server/localdev-config.json:$.DBC_HOST"
+    ]
+ },
+ "DBC_PORT": {
+    "searchPatterns": [
+      "env:DBC_PORT",
+      "file:/server/localdev-config.json:$.DBC_PORT"
+    ]
+ },
+ "DBC_PROT": {
+    "searchPatterns": [
+      "env:DBC_PROT",
+      "file:/server/localdev-config.json:$.DBC_PROT"
+    ]
+ },
+ "DBC_NAME": {
+    "searchPatterns": [
+      "env:DBC_NAME",
+      "file:/server/localdev-config.json:$.DBC_NAME"
+    ]
+ },
+ "DBC_USERNAME": {
+    "searchPatterns": [
+      "env:DBC_USERNAME",
+      "file:/server/localdev-config.json:$.DBC_USERNAME"
+    ]
+ },
+ "DBC_PSW": {
+    "searchPatterns": [
+      "env:DBC_PSW",
+      "file:/server/localdev-config.json:$.DBC_PSW"
+    ]
+ }
+}

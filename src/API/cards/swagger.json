@@ -1,0 +1,211 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "cards",
+    "version" : "1.0.0",
+    "description" : "cards"
+  },
+  "paths" : {
+    "/cards" : {
+      "get" : {
+        "operationId" : "getCards",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/getCardListResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve cards",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postCards",
+        "responses" : {
+          "201" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createCardResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a cards",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/createCardReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "operationId" : "deleteCards",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/deleteCardResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from cards",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      },
+      "options" : {
+        "operationId" : "optionsCards",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve options"
+      },
+      "put" : {
+        "operationId" : "putCards",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/updateCardResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update cards",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/updateCardReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/bnkapi",
+  "definitions" : {
+    "createCardReqType" : {
+      "type" : "object",
+      "properties" : {
+        "card" : {
+          "type" : "string"
+        },
+        "idacnt" : {
+          "type" : "number"
+        },
+        "dtissue" : {
+          "type" : "string"
+        },
+        "dtexpire" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createCardResType" : {
+      "type" : "object",
+      "properties" : {
+        "xres" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "deleteCardResType" : {
+      "type" : "object",
+      "properties" : {
+        "deleted" : {
+          "type" : "number"
+        }
+      }
+    },
+    "getCardListResType" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/getCardResType"
+      }
+    },
+    "getCardResType" : {
+      "type" : "object",
+      "properties" : {
+        "idcrd" : {
+          "type" : "number"
+        },
+        "card" : {
+          "type" : "string"
+        },
+        "idacnt" : {
+          "type" : "number"
+        },
+        "dtissue" : {
+          "type" : "string"
+        },
+        "dtexpire" : {
+          "type" : "string"
+        },
+        "islck" : {
+          "type" : "string"
+        },
+        "dtlck" : {
+          "type" : "string"
+        },
+        "idt" : {
+          "type" : "string"
+        },
+        "itm" : {
+          "type" : "string"
+        },
+        "mdt" : {
+          "type" : "string"
+        },
+        "mtm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateCardReqType" : {
+      "type" : "object",
+      "properties" : {
+        "dtexpire" : {
+          "type" : "string"
+        },
+        "islck" : {
+          "type" : "string"
+        },
+        "dtlck" : {
+          "type" : "string"
+        },
+        "idcrd" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "updateCardResType" : {
+      "type" : "object",
+      "properties" : {
+        "updated" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}

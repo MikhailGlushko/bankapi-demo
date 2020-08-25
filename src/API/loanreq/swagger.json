@@ -1,0 +1,205 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "loanreq",
+    "version" : "1.0.0",
+    "description" : "loanreq"
+  },
+  "paths" : {
+    "/loan" : {
+      "get" : {
+        "operationId" : "getLoan",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/GetLoanResType"
+              }
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve loan",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postLoan",
+        "responses" : {
+          "201" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createLoanResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a loan",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/createLoanReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "operationId" : "deleteLoan",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/deleteLoanResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from loan",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      },
+      "options" : {
+        "operationId" : "optionsLoan",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve options"
+      }
+    }
+  },
+  "basePath" : "/bnkapi",
+  "definitions" : {
+    "createLoanReqType" : {
+      "type" : "object",
+      "properties" : {
+        "mtype" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "integer"
+        },
+        "cust_message" : {
+          "type" : "string"
+        },
+        "cust_email" : {
+          "type" : "string"
+        },
+        "cust_phone" : {
+          "type" : "string"
+        },
+        "loan_type" : {
+          "type" : "string"
+        },
+        "loan_amount" : {
+          "type" : "string"
+        },
+        "loan_term" : {
+          "type" : "string"
+        },
+        "loan_collat_dsc" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createLoanResType" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GetLoanResType" : {
+      "type" : "object",
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "_rev" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "mtype" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "integer"
+        },
+        "cust_message" : {
+          "type" : "string"
+        },
+        "cust_email" : {
+          "type" : "string"
+        },
+        "cust_phone" : {
+          "type" : "string"
+        },
+        "loan_type" : {
+          "type" : "string"
+        },
+        "loan_amount" : {
+          "type" : "number"
+        },
+        "loan_term" : {
+          "type" : "string"
+        },
+        "loan_collat_dsc" : {
+          "type" : "string"
+        },
+        "app_date" : {
+          "type" : "string"
+        },
+        "app_time" : {
+          "type" : "string"
+        },
+        "app_status" : {
+          "type" : "string"
+        },
+        "bnk_empid" : {
+          "type" : "string"
+        },
+        "bnk_empmsg" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GetLoanListResType" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/GetLoanResType"
+      }
+    },
+    "deleteLoanResType" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "rev" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

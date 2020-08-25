@@ -1,0 +1,232 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "accounts",
+    "version" : "1.0.0",
+    "description" : "accounts"
+  },
+  "paths" : {
+    "/accounts" : {
+      "get" : {
+        "operationId" : "getAccounts",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/getAccountResType"
+              }
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve accounts",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postAccounts",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/createAccountResType"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a accounts",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/createAccountReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "operationId" : "deleteAccounts",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/deleteAccountResType"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from accounts",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      },
+      "options" : {
+        "operationId" : "optionsAccounts",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve options"
+      },
+      "put" : {
+        "operationId" : "putAccounts",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update accounts",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/createAccountReqType"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/bnkapi",
+  "definitions" : {
+    "createAccountReqType" : {
+      "type" : "object",
+      "properties" : {
+        "acnum" : {
+          "type" : "string"
+        },
+        "ccy" : {
+          "type" : "string"
+        },
+        "actype" : {
+          "type" : "string"
+        },
+        "acname" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "string"
+        },
+        "dtopen" : {
+          "type" : "string"
+        },
+        "dtclose" : {
+          "type" : "string"
+        },
+        "bal" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createAccountResType" : {
+      "type" : "object",
+      "properties" : {
+        "xres" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "deleteAccountResType" : {
+      "type" : "object",
+      "properties" : {
+        "deleted" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "getAccountListResType" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/getAccountResType"
+      }
+    },
+    "getAccountResType" : {
+      "type" : "object",
+      "properties" : {
+        "idacnt" : {
+          "type" : "number"
+        },
+        "acnum" : {
+          "type" : "string"
+        },
+        "ccy" : {
+          "type" : "string"
+        },
+        "actype" : {
+          "type" : "string"
+        },
+        "acname" : {
+          "type" : "string"
+        },
+        "idcust" : {
+          "type" : "number"
+        },
+        "dtopen" : {
+          "type" : "string"
+        },
+        "dtclose" : {
+          "type" : "string"
+        },
+        "bal" : {
+          "type" : "number"
+        },
+        "idt" : {
+          "type" : "string"
+        },
+        "itm" : {
+          "type" : "string"
+        },
+        "mdt" : {
+          "type" : "string"
+        },
+        "mtm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateAccountReqType" : {
+      "type" : "object",
+      "properties" : {
+        "acname" : {
+          "type" : "string"
+        },
+        "actype" : {
+          "type" : "string"
+        },
+        "dtclose" : {
+          "type" : "string"
+        },
+        "bal" : {
+          "type" : "number"
+        },
+        "idacnt" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "updateAccountResType" : {
+      "type" : "object",
+      "properties" : {
+        "deleted" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}

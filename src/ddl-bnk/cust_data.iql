@@ -1,0 +1,27 @@
+SET client_encoding = 'UTF8';
+
+insert into bnk.b_cust
+(first_nm, last_nm , email, tin ) 
+values
+('Petro', 'ERSHOW', 'pet@gmai.com', '1234567890');
+
+
+insert into bnk.b_cust
+(first_nm, last_nm , email, tin ) 
+values
+('Semion', 'Markovich', 'sem@gmai.com', '1234567891');
+
+
+insert into bnk.b_cust
+(first_nm, last_nm , email, tin ) 
+values
+('Shlioma', 'Mimi', 'mimi@gmai.com', '1234567892');
+
+insert into bnk.b_cust
+(first_nm, last_nm , email, tin ) 
+values
+('Химка', 'Суха', 'mimi@gmai.com', '1234567892');
+
+
+
+select * from bnk.b_cust;
